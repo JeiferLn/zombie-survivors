@@ -4,12 +4,26 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private BulletScript bulletPrefab;
+    [SerializeField] private float fireRate = 0.2f; // Tiempo entre disparos en segundos
+
     [SerializeField] private float speed = 5.0f;
     private Rigidbody2D rb;
+
+    private float nextFireTime = 0.0f;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+    }
+
+    void Update()
+    {
+        if (Input.GetMouseButton(0) && Time.time >= nextFireTime)
+        {
+            Shoot();
+            nextFireTime = Time.time + fireRate;
+        }
     }
 
     void FixedUpdate()
@@ -35,5 +49,12 @@ public class PlayerController : MonoBehaviour
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angle);
+    }
+
+    void Shoot()
+    {
+        BulletScript bullet = Instantiate(bulletPrefab, transform.position + transform.right * 1f, transform.rotation);
+
+        bullet.Shoot(transform);
     }
 }

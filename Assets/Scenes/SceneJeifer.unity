@@ -155,6 +155,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a13f206ac38c7f0409592d834f4d0eac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 5463168906427961472, guid: 6023ccbdd30ee491e9ed9043807086fb, type: 3}
+  fireRate: 0.2
   speed: 5
 --- !u!50 &435157533
 Rigidbody2D:
@@ -388,7 +390,7 @@ GameObject:
   - component: {fileID: 1451081677}
   m_Layer: 0
   m_Name: Square (2)
-  m_TagString: Limit
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -497,7 +499,7 @@ GameObject:
   - component: {fileID: 1704811362}
   m_Layer: 0
   m_Name: Square (3)
-  m_TagString: Limit
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -606,7 +608,7 @@ GameObject:
   - component: {fileID: 1725588729}
   m_Layer: 0
   m_Name: Square
-  m_TagString: Limit
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -715,7 +717,7 @@ GameObject:
   - component: {fileID: 2019564967}
   m_Layer: 0
   m_Name: Square (1)
-  m_TagString: Limit
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

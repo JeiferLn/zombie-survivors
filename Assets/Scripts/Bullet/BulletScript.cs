@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Rigidbody2D rb;
+
+    [SerializeField] private float speed = 10.0f;
+
+    public void Shoot(Transform playerPosition)
     {
-        
+        rb = GetComponent<Rigidbody2D>();
+
+        rb.AddForce(playerPosition.right * speed, ForceMode2D.Impulse);
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            Destroy(gameObject);
+        }
     }
 }
