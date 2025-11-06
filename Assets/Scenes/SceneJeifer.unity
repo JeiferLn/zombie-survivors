@@ -258,7 +258,7 @@ Transform:
   m_LocalScale: {x: 0.5851, y: 0.5436, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
@@ -353,43 +353,13 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 2019564966}
+  - {fileID: 1704811361}
+  - {fileID: 1725588728}
+  - {fileID: 1451081676}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &527020635
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 527020636}
-  m_Layer: 0
-  m_Name: Limit
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &527020636
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 527020635}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.1845465, y: -0.0376606, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1725588728}
-  - {fileID: 2019564966}
-  - {fileID: 1451081676}
-  - {fileID: 1704811361}
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1451081675
 GameObject:
@@ -403,7 +373,7 @@ GameObject:
   - component: {fileID: 1451081678}
   - component: {fileID: 1451081677}
   m_Layer: 0
-  m_Name: Square (2)
+  m_Name: RightLimit
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -416,12 +386,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1451081675}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.58, y: 0.2091, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 9.86, y: -0.33, z: 10}
   m_LocalScale: {x: 1.0377, y: 11.3578005, z: 1}
   m_Children: []
-  m_Father: {fileID: 527020636}
-  m_RootOrder: 2
+  m_Father: {fileID: 519420032}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1451081677
 BoxCollider2D:
@@ -512,7 +482,7 @@ GameObject:
   - component: {fileID: 1704811363}
   - component: {fileID: 1704811362}
   m_Layer: 0
-  m_Name: Square (3)
+  m_Name: BottomLimit
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -525,12 +495,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1704811360}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.7907, y: -5.55, z: 0}
-  m_LocalScale: {x: 19.041485, y: -1.1476262, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.1962, y: -6.18, z: 10}
+  m_LocalScale: {x: 19.437548, y: -1.1476262, z: 1}
   m_Children: []
-  m_Father: {fileID: 527020636}
-  m_RootOrder: 3
+  m_Father: {fileID: 519420032}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1704811362
 BoxCollider2D:
@@ -621,7 +591,7 @@ GameObject:
   - component: {fileID: 1725588730}
   - component: {fileID: 1725588729}
   m_Layer: 0
-  m_Name: Square
+  m_Name: LeftLimit
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -634,12 +604,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1725588727}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.2112, y: 0.2091, z: 0}
-  m_LocalScale: {x: 1.0377, y: 11.3578005, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -9.73, y: -0.0756, z: 10}
+  m_LocalScale: {x: 1.0377, y: 10.995003, z: 1}
   m_Children: []
-  m_Father: {fileID: 527020636}
-  m_RootOrder: 0
+  m_Father: {fileID: 519420032}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1725588729
 BoxCollider2D:
@@ -730,7 +700,7 @@ GameObject:
   - component: {fileID: 2019564968}
   - component: {fileID: 2019564967}
   m_Layer: 0
-  m_Name: Square (1)
+  m_Name: TopLimit
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -743,12 +713,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2019564965}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.7907, y: 5.6, z: 0}
-  m_LocalScale: {x: 19.041485, y: -1.1476262, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.2621, y: 5.92, z: 10}
+  m_LocalScale: {x: 19.304258, y: -1.1476262, z: 1}
   m_Children: []
-  m_Father: {fileID: 527020636}
-  m_RootOrder: 1
+  m_Father: {fileID: 519420032}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2019564967
 BoxCollider2D:
