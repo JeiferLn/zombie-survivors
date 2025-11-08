@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: ZombieNormal
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyTypeTopDown
-  enemyName: zoombie-walker
+  m_Script: {fileID: 11500000, guid: 1e551bab06c560f4ea8610a140c49a54, type: 3}
+  m_Name: New Enemy TopDown
+  m_EditorClassIdentifier: 
+  enemyName: 
   maxHealth: 100
   moveSpeed: 5
   rotationSpeed: 360
