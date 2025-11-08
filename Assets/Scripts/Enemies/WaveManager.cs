@@ -140,7 +140,7 @@ public class WaveManager : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        EnemyTypeTopDown enemyType = enemyDatabase.GetRandomEnemy(currentWave);
+        EnemyType enemyType = enemyDatabase.GetRandomEnemy(currentWave);
         if (enemyType == null) return;
 
         Vector2 spawnPosition = GetSpawnPosition();
