@@ -7,7 +7,7 @@ public class EnemyDatabase : ScriptableObject
     [System.Serializable]
     public class EnemySpawnInfo
     {
-        public EnemyTypeTopDown enemyType;
+        public EnemyType enemyType;
         public int baseWeight = 1;
         public int minWave = 0;
         public float healthMultiplierPerWave = 0.1f;
@@ -40,7 +40,7 @@ public class EnemyDatabase : ScriptableObject
     public int enemiesIncreasePerWave = 2;
     public float difficultyMultiplier = 1.15f;
     
-    public EnemyTypeTopDown GetRandomEnemy(int currentWave)
+    public EnemyType GetRandomEnemy(int currentWave)
     {
         List<EnemySpawnInfo> availableEnemies = new List<EnemySpawnInfo>();
         int totalWeight = 0;
