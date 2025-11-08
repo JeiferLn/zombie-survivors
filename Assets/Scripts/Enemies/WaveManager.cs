@@ -27,7 +27,7 @@ public class WaveManager : MonoBehaviour
     public int enemiesPerFrame = 2; // Enemigos a procesar por frame
     
     [Header("Runtime")]
-    private List<EnemyTopDown> activeEnemies = new List<EnemyTopDown>();
+    private List<Enemy> activeEnemies = new List<Enemy>();
     private int enemiesRemainingToSpawn;
     private int enemiesKilledThisWave;
     private bool waveInProgress;
@@ -68,7 +68,7 @@ public class WaveManager : MonoBehaviour
         foreach (var enemyInfo in enemyDatabase.enemyPool)
         {
             GameObject enemyPrefab = new GameObject($"Enemy_{enemyInfo.enemyType.enemyName}");
-            EnemyTopDown enemy = enemyPrefab.AddComponent<EnemyTopDown>();
+            Enemy enemy = enemyPrefab.AddComponent<Enemy>();
             SpriteRenderer sr = enemyPrefab.AddComponent<SpriteRenderer>();
             CircleCollider2D col = enemyPrefab.AddComponent<CircleCollider2D>();
             col.isTrigger = true;
@@ -159,12 +159,12 @@ public class WaveManager : MonoBehaviour
             enemyObj = new GameObject($"Enemy_{enemyType.enemyName}");
             enemyObj.AddComponent<SpriteRenderer>();
             enemyObj.AddComponent<CircleCollider2D>().isTrigger = true;
-            enemyObj.AddComponent<EnemyTopDown>();
+            enemyObj.AddComponent<Enemy>();
         }
         
         enemyObj.transform.position = spawnPosition;
         
-        EnemyTopDown enemy = enemyObj.GetComponent<EnemyTopDown>();
+        Enemy enemy = enemyObj.GetComponent<Enemy>();
         enemy.Initialize(enemyType, currentWave);
         
         activeEnemies.Add(enemy);
@@ -226,7 +226,7 @@ public class WaveManager : MonoBehaviour
         return spawnPos;
     }
     
-    public void OnEnemyKilled(EnemyTopDown enemy)
+    public void OnEnemyKilled(Enemy enemy)
     {
         activeEnemies.Remove(enemy);
         enemiesKilledThisWave++;
@@ -255,7 +255,7 @@ public class WaveManager : MonoBehaviour
     
     void CleanupDeadEnemies()
     {
-        activeEnemies.RemoveAll(e => e == null || e.currentState == EnemyTopDown.EnemyState.Dead);
+        activeEnemies.RemoveAll(e => e == null || e.currentState == Enemy.EnemyState.Dead);
     }
     
     void ShowWaveStartUI()
@@ -293,7 +293,7 @@ public class WaveManager : MonoBehaviour
         }
     }
     
-    public List<EnemyTopDown> GetActiveEnemies()
+    public List<Enemy> GetActiveEnemies()
     {
         CleanupDeadEnemies();
         return activeEnemies;

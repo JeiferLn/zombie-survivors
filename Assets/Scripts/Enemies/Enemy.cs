@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class EnemyTopDown : MonoBehaviour, IPoolable
+public class Enemy : MonoBehaviour, IPoolable
 {
     [Header("Configuration")]
     public EnemyTypeTopDown enemyType;
@@ -15,7 +15,7 @@ public class EnemyTopDown : MonoBehaviour, IPoolable
     private float secondaryCooldown;
     
     [Header("State")]
-    private EnemyState currentState = EnemyState.Spawning;
+    public EnemyState currentState = EnemyState.Spawning;
     private float stateTimer;
     private Vector2 targetPosition;
     private float strafeAngle;
@@ -217,7 +217,7 @@ public class EnemyTopDown : MonoBehaviour, IPoolable
             case EnemyTypeTopDown.MovementBehavior.ZigZag:
                 float zigzag = Mathf.Sin(Time.time * 3f) * enemyType.zigzagAmplitude;
                 Vector2 perpendicular = new Vector2(-directionToTarget.y, directionToTarget.x);
-                moveDirection = directionToTarget + perpendicular * zigzag * 0.3f;
+                moveDirection = directionToTarget + perpendicular * (zigzag * 0.3f);
                 moveDirection.Normalize();
                 break;
                 
@@ -256,7 +256,7 @@ public class EnemyTopDown : MonoBehaviour, IPoolable
             return;
         
         // Movimiento suave
-        Vector2 movement = moveDirection * currentSpeed * Time.deltaTime;
+        Vector2 movement = moveDirection * (currentSpeed * Time.deltaTime);
         transform.Translate(movement, Space.World);
         
         // Animación de movimiento
