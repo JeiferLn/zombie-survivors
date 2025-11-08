@@ -4,7 +4,7 @@ using System.Collections;
 public class Enemy : MonoBehaviour, IPoolable
 {
     [Header("Configuration")]
-    public EnemyTypeTopDown enemyType;
+    public EnemyType enemyType;
     
     [Header("Runtime Stats")]
     private float currentHealth;
@@ -56,7 +56,7 @@ public class Enemy : MonoBehaviour, IPoolable
         animator = GetComponent<Animator>();
     }
     
-    public void Initialize(EnemyTypeTopDown type, int waveNumber = 1)
+    public void Initialize(EnemyType type, int waveNumber = 1)
     {
         enemyType = type;
         
@@ -200,11 +200,11 @@ public class Enemy : MonoBehaviour, IPoolable
         
         switch (enemyType.movementType)
         {
-            case EnemyTypeTopDown.MovementBehavior.Direct:
+            case EnemyType.MovementBehavior.Direct:
                 moveDirection = directionToTarget;
                 break;
                 
-            case EnemyTypeTopDown.MovementBehavior.Strafe:
+            case EnemyType.MovementBehavior.Strafe:
                 strafeAngle += Time.deltaTime * 2f;
                 Vector2 strafeOffset = new Vector2(
                     Mathf.Cos(strafeAngle) * enemyType.strafingDistance,
@@ -214,14 +214,14 @@ public class Enemy : MonoBehaviour, IPoolable
                 moveDirection = (targetPosition - (Vector2)transform.position).normalized;
                 break;
                 
-            case EnemyTypeTopDown.MovementBehavior.ZigZag:
+            case EnemyType.MovementBehavior.ZigZag:
                 float zigzag = Mathf.Sin(Time.time * 3f) * enemyType.zigzagAmplitude;
                 Vector2 perpendicular = new Vector2(-directionToTarget.y, directionToTarget.x);
                 moveDirection = directionToTarget + perpendicular * (zigzag * 0.3f);
                 moveDirection.Normalize();
                 break;
                 
-            case EnemyTypeTopDown.MovementBehavior.KeepDistance:
+            case EnemyType.MovementBehavior.KeepDistance:
                 float currentDistance = Vector2.Distance(transform.position, target.position);
                 if (currentDistance < enemyType.preferredDistance - 1f)
                 {
@@ -239,7 +239,7 @@ public class Enemy : MonoBehaviour, IPoolable
                 }
                 break;
                 
-            case EnemyTypeTopDown.MovementBehavior.Random:
+            case EnemyType.MovementBehavior.Random:
                 if (stateTimer <= 0)
                 {
                     moveDirection = Random.insideUnitCircle.normalized;
