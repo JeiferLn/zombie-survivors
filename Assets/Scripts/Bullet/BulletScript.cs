@@ -6,13 +6,11 @@ public class BulletScript : MonoBehaviour
 {
     private Rigidbody2D rb;
 
-    [SerializeField] private float speed = 10.0f;
-
-    public void Shoot(Transform playerPosition)
+    public void Shoot(Transform playerPosition, float bulletSpeed)
     {
         rb = GetComponent<Rigidbody2D>();
 
-        rb.AddForce(playerPosition.right * speed, ForceMode2D.Impulse);
+        rb.AddForce(playerPosition.right * bulletSpeed, ForceMode2D.Impulse);
     }
 
     void OnCollisionEnter2D(Collision2D collision)

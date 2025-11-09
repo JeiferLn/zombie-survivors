@@ -5,9 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private BulletScript bulletPrefab;
-    [SerializeField] private float fireRate = 0.2f; // Tiempo entre disparos en segundos
+    [SerializeField] private PlayerStats playerStats;
 
-    [SerializeField] private float speed = 5.0f;
     private Rigidbody2D rb;
 
     private float nextFireTime = 0.0f;
@@ -22,7 +21,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButton(0) && Time.time >= nextFireTime)
         {
             Shoot();
-            nextFireTime = Time.time + fireRate;
+            nextFireTime = Time.time + playerStats.fireRate;
         }
     }
 
@@ -36,7 +35,7 @@ public class PlayerController : MonoBehaviour
 
         if (movement.magnitude > 0.1f)
         {
-            rb.velocity = movement.normalized * speed;
+            rb.velocity = movement.normalized * playerStats.moveSpeed;
         }
         else
         {
@@ -55,6 +54,6 @@ public class PlayerController : MonoBehaviour
     {
         BulletScript bullet = Instantiate(bulletPrefab, transform.position + transform.right * 1f, transform.rotation);
 
-        bullet.Shoot(transform);
+        bullet.Shoot(transform, playerStats.bulletSpeed);
     }
 }
