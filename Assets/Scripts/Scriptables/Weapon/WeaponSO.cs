@@ -11,7 +11,7 @@ public class WeaponSO : ScriptableObject
     public float velocity;
 
     [Header("Others")]
-    public float autoTargetRange;
+    public bool autoTargetRange = false;
 
     [Header("Prefab")]
     public GameObject bulletPrefab;
