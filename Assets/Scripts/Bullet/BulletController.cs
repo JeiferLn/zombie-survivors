@@ -96,7 +96,15 @@ public class BulletController : MonoBehaviour
         if (collision.collider.CompareTag("Limit"))
         {
             Despawn();
+            return;
         }
+       
+        if (collision.collider.TryGetComponent<IDamageable>(out var dmg))
+        {
+            dmg.TakeDamage(damage);
+            Despawn();
+        }
+
     }
 
     void OnTriggerEnter2D(Collider2D col)
