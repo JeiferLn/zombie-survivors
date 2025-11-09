@@ -8,10 +8,13 @@ public class WeaponSO : ScriptableObject
     public float damage;
     public float fireRate;
     public float range;
-    public float velocity;
+    public float speed;
 
     [Header("Others")]
     public bool autoTargetRange = false;
+
+    [Header("Bullet Pool")]
+    public string bulletPoolTag;
 
     [Header("Prefab")]
     public GameObject bulletPrefab;

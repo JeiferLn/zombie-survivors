@@ -16,6 +16,7 @@ MonoBehaviour:
   damage: 10
   fireRate: 5
   range: 12
-  velocity: 10
+  speed: 10
   autoTargetRange: 0
-  bulletPrefab: {fileID: 0}
+  bulletPoolTag: RifleBullet
+  bulletPrefab: {fileID: 2963483034118706757, guid: a7d7af66792701e4a80823664216a088, type: 3}

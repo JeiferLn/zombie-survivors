@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Enemy : MonoBehaviour, IPoolable
+public class Enemy : MonoBehaviour, IPoolable, IDamageable
 {
     [Header("Configuration")]
     public EnemyType enemyType;

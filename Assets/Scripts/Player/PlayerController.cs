@@ -21,13 +21,6 @@ public class PlayerController : MonoBehaviour
         {
             EquipWeapon(weaponOnGround.weaponData);
         }
-        
-        // if (Input.GetMouseButton(0) && Time.time >= nextFireTime)
-        // {
-        //     Shoot();
-        // }
-
-
     }
 
     private void FixedUpdate()
@@ -50,8 +43,9 @@ public class PlayerController : MonoBehaviour
     public void EquipWeapon(WeaponSO weapon)
     {
         equippedWeapon = weapon;
-        Debug.Log("Arma equipada: " + weapon.weaponName + " Daño: " + weapon.damage + " Frecuencia de disparo: " + weapon.fireRate + " Alcance: " + weapon.range + " Velocidad: " + weapon.velocity);
     }
+
+    public WeaponSO GetEquippedWeapon() => equippedWeapon;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

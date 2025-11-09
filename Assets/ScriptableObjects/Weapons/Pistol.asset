@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: Pistol
   damage: 5
-  fireRate: 10
-  range: 8
-  velocity: 5
+  fireRate: 1
+  range: 4
+  speed: 3
   autoTargetRange: 0
-  bulletPrefab: {fileID: 0}
+  bulletPoolTag: PistolBullet
+  bulletPrefab: {fileID: 3121977572102926365, guid: d531fdbc3ca978d41b617e3cd99870f8, type: 3}

@@ -41,7 +41,6 @@ public class GameManager : MonoBehaviour
         currentXP -= maxXPPerLevel;
         maxXPPerLevel *= 1.1f; // aumenta un 10%
 
-        // Mejorar estadísticas del jugador
         playerStats.maxHealth *= 1.1f;  // +10% vida
         playerStats.moveSpeed *= 1.05f; // +5% velocidad
 

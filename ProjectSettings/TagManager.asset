@@ -8,6 +8,7 @@ TagManager:
   - Bullet
   - Obstacle
   - Weapon
+  - Limit
   layers:
   - Default
   - TransparentFX
