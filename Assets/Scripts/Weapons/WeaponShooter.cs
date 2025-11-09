@@ -15,10 +15,30 @@ public class WeaponShooter : MonoBehaviour
     void Update()
     {
         WeaponSO weapon = player?.GetEquippedWeapon();
-        
+
         if (weapon == null || weapon.bulletPrefab == null)
         {
+            player.SetLookDirection(null);
             return;
+        }
+
+        if (weapon.autoTargetRange)
+        {
+            Transform target = FindNearestEnemy(muzzle.position, weapon.range);
+
+            if (target != null)
+            {
+                Vector2 lookDir = (Vector2)(target.position - player.transform.position);
+                player.SetLookDirection(lookDir);
+            }
+            else
+            {
+                player.SetLookDirection(null);
+            }
+        }
+        else
+        {
+            player.SetLookDirection(null);
         }
 
         if (Input.GetMouseButton(0) && Time.time >= nextFireTime)
@@ -27,6 +47,7 @@ public class WeaponShooter : MonoBehaviour
             nextFireTime = Time.time + (1f / Mathf.Max(weapon.fireRate, 0.01f));
         }
     }
+
 
     public void Shoot(WeaponSO weapon)
     {
@@ -37,9 +58,10 @@ public class WeaponShooter : MonoBehaviour
         {
             target = FindNearestEnemy(muzzle.position, weapon.range);
 
-            dir = target != null 
-                ? (Vector2)(target.position - muzzle.position)
-                : GetMouseDirection();
+            if (target == null)
+                return;
+
+            dir = (Vector2)(target.position - muzzle.position);
         }
         else
         {

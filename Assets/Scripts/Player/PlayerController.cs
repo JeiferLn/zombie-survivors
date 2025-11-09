@@ -7,8 +7,10 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
 
-    private bool canPickUp ;
+    private bool canPickUp;
     private WeaponPickup weaponOnGround;
+
+    private Vector2? overrideLookDir = null;
 
     void Start()
     {
@@ -25,6 +27,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // Movimiento
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
 
@@ -33,10 +36,22 @@ public class PlayerController : MonoBehaviour
         rb.velocity =
             move.magnitude > 0.1f ? move.normalized * playerStats.moveSpeed : Vector2.zero;
 
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 dir = mousePos - transform.position;
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        // Rotación (según auto-target ó mouse)
+        Vector2 lookDir;
 
+        if (overrideLookDir.HasValue)
+        {
+            // Mirar al enemigo
+            lookDir = overrideLookDir.Value;
+        }
+        else
+        {
+            // Mirar al mouse
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            lookDir = mousePos - transform.position;
+        }
+
+        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
@@ -46,6 +61,11 @@ public class PlayerController : MonoBehaviour
     }
 
     public WeaponSO GetEquippedWeapon() => equippedWeapon;
+
+    public void SetLookDirection(Vector2? dir)
+    {
+        overrideLookDir = dir;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
