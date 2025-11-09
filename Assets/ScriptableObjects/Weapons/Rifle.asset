@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b053af53936cf4d47b0e3fb40b605896, type: 3}
   m_Name: Rifle
   m_EditorClassIdentifier: 
-  weaponName: 
-  damage: 0
-  fireRate: 0
-  range: 0
-  velocity: 0
+  weaponName: Rifle
+  damage: 10
+  fireRate: 5
+  range: 12
+  velocity: 10
+  autoTargetRange: 0
   bulletPrefab: {fileID: 0}
