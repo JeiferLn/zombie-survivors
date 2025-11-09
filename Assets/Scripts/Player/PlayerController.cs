@@ -1,15 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private BulletScript bulletPrefab;
     [SerializeField] private PlayerStats playerStats;
+    [SerializeField] private WeaponSO equippedWeapon;
 
     private Rigidbody2D rb;
 
-    private float nextFireTime = 0.0f;
+    private bool canPickUp ;
+    private WeaponPickup weaponOnGround;
 
     void Start()
     {
@@ -18,42 +17,60 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButton(0) && Time.time >= nextFireTime)
+        if (canPickUp && Input.GetKeyDown(KeyCode.E))
         {
-            Shoot();
-            nextFireTime = Time.time + playerStats.fireRate;
+            EquipWeapon(weaponOnGround.weaponData);
         }
+        
+        // if (Input.GetMouseButton(0) && Time.time >= nextFireTime)
+        // {
+        //     Shoot();
+        // }
+
+
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        // Movimiento
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
+        float h = Input.GetAxisRaw("Horizontal");
+        float v = Input.GetAxisRaw("Vertical");
 
-        Vector2 movement = new Vector2(horizontal, vertical);
+        Vector2 move = new Vector2(h, v);
 
-        if (movement.magnitude > 0.1f)
-        {
-            rb.velocity = movement.normalized * playerStats.moveSpeed;
-        }
-        else
-        {
-            rb.velocity = Vector2.zero;
-        }
+        rb.velocity =
+            move.magnitude > 0.1f ? move.normalized * playerStats.moveSpeed : Vector2.zero;
 
-        // Rotación hacia el mouse
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 direction = mousePosition - transform.position;
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 dir = mousePos - transform.position;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
-    void Shoot()
+    public void EquipWeapon(WeaponSO weapon)
     {
-        BulletScript bullet = Instantiate(bulletPrefab, transform.position + transform.right * 1f, transform.rotation);
+        equippedWeapon = weapon;
+        Debug.Log("Arma equipada: " + weapon.weaponName + " Daño: " + weapon.damage + " Frecuencia de disparo: " + weapon.fireRate + " Alcance: " + weapon.range + " Velocidad: " + weapon.velocity);
+    }
 
-        bullet.Shoot(transform, playerStats.bulletSpeed);
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Weapon"))
+        {
+            weaponOnGround = collision.GetComponent<WeaponPickup>();
+            if (weaponOnGround != null)
+            {
+                canPickUp = true;
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Weapon"))
+        {
+            canPickUp = false;
+            weaponOnGround = null;
+        }
     }
 }
