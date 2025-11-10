@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IDamageable
 {
     [Header("Targets")]
     [SerializeField] private Transform mainTarget;
@@ -12,8 +12,9 @@ public class Enemy : MonoBehaviour
     
     private SpriteRenderer spr;
     private BoxCollider2D boxColl2D;
-   
-    
+    private IDamageable _damageableImplementation;
+
+
     private void Awake()
     {
         spr = GetComponent<SpriteRenderer>();
@@ -25,5 +26,9 @@ public class Enemy : MonoBehaviour
         if(spr!=null) spr.enabled = isVisible;
         if(boxColl2D!=null) boxColl2D.enabled = isVisible;
     }
-    
+
+    public void TakeDamage(float amount)
+    {
+      Debug.Log($"aww shiet! {amount} Damage");
+    }
 }
