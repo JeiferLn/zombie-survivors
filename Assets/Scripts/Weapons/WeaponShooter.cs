@@ -10,7 +10,19 @@ public class WeaponShooter : MonoBehaviour
     [Header("Enemy Layer")]
     [SerializeField] private LayerMask enemyLayer;
 
+    [Header("Aim Settings")]
+    [SerializeField] private float rotationSmooth = 7f;
+
     private float nextFireTime = 0f;
+
+    // Dirección interpolada suavemente
+    private Vector2 smoothLookDirection;
+
+    void Start()
+    {
+        // Dirección inicial del jugador (mirando al frente)
+        smoothLookDirection = player.transform.right;
+    }
 
     void Update()
     {
@@ -22,25 +34,49 @@ public class WeaponShooter : MonoBehaviour
             return;
         }
 
+        // ---------------------------
+        //   SUAVIZADO DE AUTO TARGET
+        // ---------------------------
         if (weapon.autoTargetRange)
         {
             Transform target = FindNearestEnemy(muzzle.position, weapon.range);
 
             if (target != null)
             {
-                Vector2 lookDir = (Vector2)(target.position - player.transform.position);
-                player.SetLookDirection(lookDir);
+                Vector2 targetDir = (Vector2)(target.position - player.transform.position);
+
+                smoothLookDirection = Vector3.Slerp(
+                    smoothLookDirection,
+                    targetDir.normalized,
+                    Time.deltaTime * rotationSmooth
+                );
+
+                player.SetLookDirection(smoothLookDirection);
             }
             else
             {
-                player.SetLookDirection(null);
+                // Si no hay enemigo, apuntar suavemente al mouse
+                Vector2 mouseDir = GetMouseDirectionFromPlayer();
+
+                smoothLookDirection = Vector3.Slerp(
+                    smoothLookDirection,
+                    mouseDir.normalized,
+                    Time.deltaTime * rotationSmooth
+                );
+
+                player.SetLookDirection(smoothLookDirection);
             }
         }
         else
         {
+            // Sin auto-target → mirar al mouse normalmente
             player.SetLookDirection(null);
         }
 
+
+        // ---------------------------
+        //         DISPARO
+        // ---------------------------
         if (Input.GetMouseButton(0) && Time.time >= nextFireTime)
         {
             Shoot(weapon);
@@ -68,7 +104,6 @@ public class WeaponShooter : MonoBehaviour
             dir = GetMouseDirection();
         }
 
-
         BulletController bullet = bulletPool.Get(weapon.bulletPoolTag);
         bullet.transform.position = muzzle.position;
 
@@ -83,6 +118,13 @@ public class WeaponShooter : MonoBehaviour
         Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mouse.z = 0f;
         return (mouse - muzzle.position);
+    }
+
+    private Vector2 GetMouseDirectionFromPlayer()
+    {
+        Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mouse.z = 0f;
+        return (mouse - player.transform.position);
     }
 
     private Transform FindNearestEnemy(Vector3 origin, float radius)
