@@ -14,9 +14,6 @@ public class BulletController : MonoBehaviour
     private Transform target;
 
     private Vector2 startPos;
-
-    private WeaponSO weapon;
-
     private float lifeTimer;
     private float maxLifetime = 5f;
 
@@ -27,6 +24,7 @@ public class BulletController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    // Se llama desde el pool para almacenar el tag
     public void SetPoolTag(string tag)
     {
         poolTag = tag;
@@ -34,7 +32,6 @@ public class BulletController : MonoBehaviour
 
     public void Init(WeaponSO so, Vector2 direction, BulletPool fromPool)
     {
-        weapon = so;
         pool = fromPool;
 
         damage = so.damage;
@@ -95,7 +92,6 @@ public class BulletController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Bullet hit: " + collision.collider.name);
         if (collision.collider.CompareTag("Limit"))
         {
             Despawn();
@@ -104,16 +100,10 @@ public class BulletController : MonoBehaviour
 
         if (collision.collider.TryGetComponent<IDamageable>(out var dmg))
         {
-            if (weapon.stickToTarget)
-            {
-                rb.linearVelocity = Vector2.zero;
-                transform.position = target.position;
-                return;
-            }
-
             dmg.TakeDamage(damage);
             Despawn();
         }
+
     }
 
     void OnTriggerEnter2D(Collider2D col)

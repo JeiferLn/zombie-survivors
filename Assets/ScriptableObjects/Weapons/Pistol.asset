@@ -18,5 +18,6 @@ MonoBehaviour:
   range: 4
   speed: 10
   autoTargetRange: 0
+  stickToTarget: 1
   bulletPoolTag: PistolBullet
   bulletPrefab: {fileID: 3121977572102926365, guid: d531fdbc3ca978d41b617e3cd99870f8, type: 3}
