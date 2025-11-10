@@ -45,9 +45,9 @@ public class BulletController : MonoBehaviour
         lifeTimer = 0f;
 
         direction.Normalize();
-        rb.velocity = direction * speed;
+        rb.linearVelocity = direction * speed;
 
-        RotateToward(rb.velocity);
+        RotateToward(rb.linearVelocity);
     }
 
     public void InitHoming(WeaponSO so, Transform newTarget, BulletPool fromPool)
@@ -73,9 +73,9 @@ public class BulletController : MonoBehaviour
             Vector2 dir = ((Vector2)target.position - rb.position).normalized;
             float turnRate = 12f;
             Vector2 desired = dir * speed;
-            rb.velocity = Vector2.Lerp(rb.velocity, desired, turnRate * Time.deltaTime);
+            rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, desired, turnRate * Time.deltaTime);
 
-            RotateToward(rb.velocity);
+            RotateToward(rb.linearVelocity);
         }
 
         if (Vector2.Distance(startPos, transform.position) >= range)
@@ -127,7 +127,7 @@ public class BulletController : MonoBehaviour
 
     private void Despawn()
     {
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
 
         if (string.IsNullOrEmpty(poolTag))
         {

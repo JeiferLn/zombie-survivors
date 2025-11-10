@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
 
         Vector2 move = new Vector2(h, v);
 
-        rb.velocity =
+        rb.linearVelocity =
             move.magnitude > 0.1f ? move.normalized * playerStats.moveSpeed : Vector2.zero;
 
         // Rotación (según auto-target ó mouse)
