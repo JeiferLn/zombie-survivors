@@ -12,6 +12,7 @@ public class WeaponSO : ScriptableObject
 
     [Header("Others")]
     public bool autoTargetRange = false;
+    public bool stickToTarget = false;
 
     [Header("Bullet Pool")]
     public string bulletPoolTag;
