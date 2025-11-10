@@ -1,20 +1,16 @@
+using System;
 using UnityEngine;
-using System.Collections;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
-    [Header("Targets")]
-    [SerializeField] private Transform mainTarget;
-    [SerializeField] private Transform secondaryTarget;
-    
-    [Header("Settings")]
-    
-    
+    // Components to disable/enable
     private SpriteRenderer spr;
     private BoxCollider2D boxColl2D;
     private IDamageable _damageableImplementation;
-
-
+    
+    // Enemy active state (active/inactive)
+    public bool isActive { get; private set; }
+    
     private void Awake()
     {
         spr = GetComponent<SpriteRenderer>();
@@ -23,6 +19,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public void SetVisible(bool isVisible)
     {
+        isActive = isVisible;
         if(spr!=null) spr.enabled = isVisible;
         if(boxColl2D!=null) boxColl2D.enabled = isVisible;
     }
