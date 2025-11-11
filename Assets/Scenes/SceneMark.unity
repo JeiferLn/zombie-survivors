@@ -227,7 +227,7 @@ GameObject:
   m_Layer: 0
   m_Name: Triangle (1)
   m_TagString: Enemy
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2800000, guid: 810279067cfa54748893a53b6a26d233, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -534,7 +534,7 @@ GameObject:
   m_Layer: 0
   m_Name: Triangle (3)
   m_TagString: Enemy
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2800000, guid: 810279067cfa54748893a53b6a26d233, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -806,7 +806,7 @@ GameObject:
   m_Layer: 0
   m_Name: Triangle
   m_TagString: Enemy
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2800000, guid: 810279067cfa54748893a53b6a26d233, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -956,7 +956,7 @@ GameObject:
   m_Layer: 0
   m_Name: Triangle (2)
   m_TagString: Enemy
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2800000, guid: 810279067cfa54748893a53b6a26d233, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
