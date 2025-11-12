@@ -10,9 +10,9 @@ public class EnemyType: ScriptableObject
     public int expAmount = 10;
     
     [Header("Detection")]
-    public float detectionRange = 10f;
+    public float detectionRange = 5f;
     public float attackMeleeRange = 2f; 
-    public float attackRange = 10f;
+    public float attackDistanceRange = 3f;
     
     [Header("Attacks")]
     public EnemyAttackData primaryAttack;
