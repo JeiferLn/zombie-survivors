@@ -15,19 +15,13 @@ MonoBehaviour:
   enemyName: zoombie-walker
   maxHealth: 100
   moveSpeed: 5
-  rotationSpeed: 360
-  scoreValue: 10
-  detectionRange: 10
-  attackRange: 2
-  loseTargetRange: 15
-  requireLineOfSight: 0
+  expAmount: 10
+  detectionRange: 5
+  attackMeleeRange: 2
+  attackDistanceRange: 4
   primaryAttack: {fileID: 11400000, guid: 0a08c5b724b999f4a910d3b94514eecf, type: 2}
   secondaryAttack: {fileID: 0}
   secondaryAttackChance: 0.3
-  movementType: 1
-  strafingDistance: 3
-  zigzagAmplitude: 2
-  preferredDistance: 5
   sprite: {fileID: 0}
   tintColor: {r: 1, g: 1, b: 1, a: 1}
   scale: 1
