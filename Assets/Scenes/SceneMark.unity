@@ -351,6 +351,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyCurrentState: 0
   enemyType: {fileID: 11400000, guid: be0e80a15c8179d4ba73156be7c1289d, type: 2}
+  isRangeEnemy: 0
 --- !u!114 &955517642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -487,7 +488,7 @@ Transform:
   m_GameObject: {fileID: 1533152428}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -18.7, y: -8.4, z: 0}
+  m_LocalPosition: {x: -16.79, y: -11.65, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -660,6 +661,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyCurrentState: 0
   enemyType: {fileID: 11400000, guid: be0e80a15c8179d4ba73156be7c1289d, type: 2}
+  isRangeEnemy: 0
 --- !u!114 &1590440115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -732,8 +734,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1887444981}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -16.79, y: -11.65, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -934,6 +936,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyCurrentState: 0
   enemyType: {fileID: 11400000, guid: be0e80a15c8179d4ba73156be7c1289d, type: 2}
+  isRangeEnemy: 0
 --- !u!114 &1941468704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1086,6 +1089,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyCurrentState: 0
   enemyType: {fileID: 11400000, guid: be0e80a15c8179d4ba73156be7c1289d, type: 2}
+  isRangeEnemy: 0
 --- !u!114 &1971362126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1103,7 +1107,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 422029964}
-  - {fileID: 1887444982}
   - {fileID: 1266619929}
   - {fileID: 1746660846}
+  - {fileID: 1887444982}
   - {fileID: 1533152431}
