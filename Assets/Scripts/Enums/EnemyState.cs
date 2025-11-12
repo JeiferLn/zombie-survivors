@@ -3,7 +3,8 @@ public enum EnemyState
     Spawning,
     Idle,
     Moving,
-    Attacking,
+    AttackingMelee,
+    AttackingDistance,
     Dying,
     Dead
 }
