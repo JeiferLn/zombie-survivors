@@ -10,5 +10,6 @@ public class FocusZone : MonoBehaviour
 
         CameraControl.Instance.focusTarget = focusPoint;
         CameraControl.Instance.ShowFocusView();
+        Destroy(gameObject);
     }
 }

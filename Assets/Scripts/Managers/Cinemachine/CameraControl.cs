@@ -39,16 +39,35 @@ public class CameraControl : MonoBehaviour
         PlayerController.Instance.SetBlocked(true);
 
         SetCameraTarget(focusTarget);
-        StartCoroutine(ReturnToPlayerAfterDelay());
+        StartCoroutine(ReturnToPlayerWhenCentered());
     }
 
-    private IEnumerator ReturnToPlayerAfterDelay()
+    private IEnumerator ReturnToPlayerWhenCentered()
     {
         yield return new WaitForSeconds(2f);
-
+        
         SetCameraTarget(playerTarget);
-        PlayerController.Instance.SetBlocked(false);
+        
+        float threshold = 0.1f;
+        while (cineCam != null && playerTarget != null)
+        {
+            Vector3 cameraPos = cineCam.State.RawPosition;
+            Vector3 targetPos = playerTarget.position;
+            
+            float distance = Vector2.Distance(
+                new Vector2(cameraPos.x, cameraPos.y),
+                new Vector2(targetPos.x, targetPos.y)
+            );
+            
+            if (distance <= threshold)
+            {
+                break;
+            }
+            
+            yield return null;
+        }
 
+        PlayerController.Instance.SetBlocked(false);
         isFocusing = false;
     }
 }
